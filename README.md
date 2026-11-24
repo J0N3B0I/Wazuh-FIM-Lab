@@ -6,6 +6,12 @@ A completed security engineering project that follows controlled file changes fr
 
 [Download the plain-English PDF summary](plain-english-summary.pdf) · [Security review](docs/security-review.md)
 
+## Follow-up kernel review
+
+Reviewed the remaining kernel inventory against Ubuntu advisories and applied targeted restrictions to the dedicated practice VM. The unused Xen backend is denied through normal module loading; unprivileged user namespace creation is disabled; kernel pointer visibility is restricted. Reboot persistence, file-change alerts, network restrictions, and existing service continuity passed. These controls reduce exposure without suppressing findings.
+
+[Review, remaining work, and rollback](docs/kernel-findings-review.md) · [Per-CVE spreadsheet](evidence/kernel-triage.csv) · [Post-reboot validation](evidence/kernel-hardening-validation.json)
+
 ## Verified results
 
 Live validation completed on **November 24, 2026**.

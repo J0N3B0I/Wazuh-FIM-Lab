@@ -1,5 +1,7 @@
 # Security review — November 24, 2026
 
+A subsequent [kernel findings review](kernel-findings-review.md) records per-CVE vendor reconciliation and additional exposure restrictions. The results below preserve the initial review history.
+
 ## Scope and conclusion
 
 Reviewed the dedicated FIM endpoint, its host forwarding/firewall rules, and targeted continuity of the existing media and Wazuh services. This was not a full homelab penetration test, external exposure audit, or zero-vulnerability certification.

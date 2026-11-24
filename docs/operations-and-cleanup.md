@@ -8,6 +8,10 @@ The private administrative key is stored on the hypervisor. The test VM uses key
 
 The host's lab bridge configuration, forwarding socket units, and firewall rules persist across a host reboot. The event socket is enabled; the enrollment socket is disabled, and the VM can be started manually for the next exercise.
 
+## Kernel restrictions
+
+The dedicated practice guest blocks normal loading of `xen_netback`, disables ordinary-user namespace creation, and restricts kernel pointer visibility. Rootless containers or desktop sandbox software require review before being added. See the [kernel findings review and rollback](kernel-findings-review.md). These restrictions apply only inside this guest.
+
 ## Routine checks
 
 Inside the test VM:

@@ -1,0 +1,80 @@
+{
+  "checked_at_utc": "2026-11-24T23:22:29.762347+00:00",
+  "test_scope": "Practice VM after kernel exposure restrictions and reboot",
+  "network": {
+    "agent_events": {
+      "reachable": true,
+      "expected": true,
+      "passed": true
+    },
+    "agent_enrollment": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    },
+    "host_management": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    },
+    "media_service": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    },
+    "internet_https": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    }
+  },
+  "media_endpoint_http_status": {
+    "homarr": 200,
+    "jellyfin": 200,
+    "seerr": 200,
+    "radarr": 200,
+    "sonarr": 200,
+    "prowlarr": 200,
+    "qbittorrent": 200,
+    "bazarr": 200,
+    "cleanuparr": 200
+  },
+  "all_13_original_container_ids_unchanged": true,
+  "four_central_wazuh_services_active": true,
+  "fim_events": [
+    {
+      "operation": "create",
+      "rule": "554",
+      "mode": "realtime",
+      "manager_indexer_ids_match": true,
+      "observed_seconds": 13.4
+    },
+    {
+      "operation": "modify",
+      "rule": "550",
+      "mode": "realtime",
+      "manager_indexer_ids_match": true,
+      "observed_seconds": 12.45
+    },
+    {
+      "operation": "delete",
+      "rule": "553",
+      "mode": "realtime",
+      "manager_indexer_ids_match": true,
+      "observed_seconds": 13.35
+    }
+  ],
+  "test_directory_empty": true,
+  "hardening_checks": {
+    "sysctl_after_reboot": {
+      "kernel.unprivileged_userns_clone": 0,
+      "kernel.kptr_restrict": 2,
+      "kernel.unprivileged_bpf_disabled": 2
+    },
+    "xen_netback_modprobe_dry_run": "install /bin/false",
+    "ordinary_user_namespace_creation": "denied",
+    "xen_netback_not_loaded": true,
+    "guest_virtualization": "kvm",
+    "architecture": "x86_64"
+  }
+}
