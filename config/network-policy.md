@@ -29,13 +29,13 @@ ndp: 0
 
 [RULES]
 IN ACCEPT -source LAB_GATEWAY_IP -p tcp -dport 22
-OUT ACCEPT -dest LAB_GATEWAY_IP -p tcp -dport 1514,1515
+OUT ACCEPT -dest LAB_GATEWAY_IP -p tcp -dport 1514
 ```
 
 The host firewall receives one additional rule scoped to the test guest and the forwarding address:
 
 ```text
-IN ACCEPT -source LAB_GUEST_IP -dest LAB_GATEWAY_IP -p tcp -dport 1514,1515
+IN ACCEPT -source LAB_GUEST_IP -dest LAB_GATEWAY_IP -p tcp -dport 1514
 ```
 
 The rest of the host policy is preserved. Validate the resulting Proxmox firewall configuration before starting the exercise.
@@ -73,8 +73,8 @@ ProtectHome=yes
 MemoryMax=64M
 ```
 
-The enrollment socket and service use the same structure with port 1515. Matching service/socket unit names let systemd activate the correct proxy when a connection arrives. The deployed unit prefixes are `fim-lab-events` and `fim-lab-enrollment`.
+During provisioning, the enrollment socket and service used the same structure with port 1515. That socket is now disabled and stopped, and port 1515 has been removed from both firewall allow rules. Reopening enrollment requires a deliberate maintenance change. Matching service/socket unit names let systemd activate the correct proxy when a connection arrives. The deployed unit prefixes are `fim-lab-events` and `fim-lab-enrollment`.
 
 ## Verification
 
-The recorded checks cover the two allowed forwarding ports and three denied destinations. Review [network-checks.json](../evidence/network-checks.json) for the observed results. The TCP forwarding service's accepted socket alone does not establish agent health. The active registration and indexed test events establish the working manager connection in this lab.
+The initial recorded checks cover provisioning with two allowed forwarding ports and three denied destinations. The subsequent security-review evidence verifies that only event forwarding remains reachable. Review [network-checks.json](../evidence/network-checks.json) for the observed results. The TCP forwarding service's accepted socket alone does not establish agent health. The active registration and indexed test events establish the working manager connection in this lab.

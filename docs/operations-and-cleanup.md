@@ -4,9 +4,9 @@
 
 The test VM remains available with 2 cores, 2 GiB RAM, and a 20 GiB virtual disk. Automatic startup when the Proxmox host boots is disabled. The agent is enabled inside the guest and starts when the VM is started.
 
-The private administrative key is stored on the hypervisor. The test VM uses key-based SSH administration through its dedicated bridge. Its lack of a default route prevents ordinary internet package retrieval.
+The private administrative key is stored on the hypervisor. The test VM uses key-based SSH administration through its dedicated bridge. Root login and password authentication are disabled; only the lab administrator account is allowed over SSH. Its lack of a default route prevents ordinary internet package retrieval. Security updates require a controlled maintenance path; the temporary Ubuntu-only proxy used for the security review has been stopped and removed.
 
-The host's lab bridge configuration, forwarding socket units, and firewall rules persist across a host reboot. Forwarding sockets are enabled, and the VM can be started manually for the next exercise.
+The host's lab bridge configuration, forwarding socket units, and firewall rules persist across a host reboot. The event socket is enabled; the enrollment socket is disabled, and the VM can be started manually for the next exercise.
 
 ## Routine checks
 
@@ -28,7 +28,8 @@ sudo systemctl is-active wazuh-manager wazuh-indexer wazuh-dashboard filebeat
 On the hypervisor:
 
 ```sh
-systemctl is-active fim-lab-events.socket fim-lab-events.service fim-lab-enrollment.socket
+systemctl is-active fim-lab-events.socket fim-lab-events.service
+systemctl is-enabled fim-lab-enrollment.socket # expected: disabled
 pve-firewall status
 ```
 

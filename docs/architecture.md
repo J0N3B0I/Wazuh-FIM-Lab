@@ -14,14 +14,14 @@ The lab's virtual bridge has no physical uplink. The guest is configured with a 
 | --- | --- | --- |
 | Host to lab VM | TCP 22 | SSH administration with a dedicated private key |
 | Lab VM to host lab address | TCP 1514 | Agent event stream forwarding |
-| Lab VM to host lab address | TCP 1515 | Agent enrollment forwarding |
+| Lab VM to host lab address | TCP 1515 | Provisioning only; now denied and listener disabled |
 | Guest incoming/outgoing | Default deny outside permitted paths | Restrict lab connectivity |
 
-The host has an additional narrow incoming rule for the lab guest and the two forwarding ports. Existing host firewall configuration was backed up before the additive edit. Proxmox firewall compilation passed after configuration.
+The host has an additional narrow incoming rule for the lab guest and the event forwarding port. Existing host firewall configuration was backed up before the additive edit. Proxmox firewall compilation passed after configuration.
 
 ## Forwarding services
 
-Two systemd socket units listen on the host's lab-facing address. Each activates `systemd-socket-proxyd`, which forwards the connection to the corresponding Wazuh manager port.
+The event socket listens on the host's lab-facing address. The enrollment socket was used during setup and is now disabled. The event socket activates `systemd-socket-proxyd`, which forwards the connection to the corresponding Wazuh manager port.
 
 The proxies use dynamic service users, restricted filesystem access, and a 64 MiB service memory limit. They forward the byte stream without terminating the Wazuh agent protocol. Their destination is fixed in the private host configuration.
 
@@ -47,6 +47,6 @@ sequenceDiagram
 
 ## Boundary checks
 
-Targeted probes from the guest reached the two allowed forwarding ports. Probes to the host administration port, a selected media service, and a public HTTPS destination failed. The bridge, guest routes, firewall settings, and these observations collectively describe the tested boundary.
+Initial targeted probes reached both provisioning ports. After hardening, event forwarding remained reachable and enrollment was blocked. Probes to the host administration port, a selected media service, and a public HTTPS destination failed. The bridge, guest routes, firewall settings, and these observations collectively describe the tested boundary.
 
 The lab is administered through the hypervisor and is not a high-availability deployment. Its single-guest tests do not establish broad network-security or performance guarantees.

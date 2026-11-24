@@ -4,6 +4,8 @@
 
 A completed security engineering project that follows controlled file changes from a dedicated Linux endpoint through Wazuh analysis and alert indexing. The exercise verifies creation, modification, and deletion events, checks file hashes, and records network restrictions and service continuity.
 
+[Download the plain-English PDF summary](plain-english-summary.pdf) · [Security review](docs/security-review.md)
+
 ## Verified results
 
 Live validation completed on **November 24, 2026**.
@@ -25,7 +27,7 @@ flowchart LR
     Admin["Proxmox host administration"] -->|SSH| Lab
     subgraph Isolated["Dedicated virtual bridge · no physical uplink"]
         Lab["Ubuntu test VM<br/>2 vCPU · 2 GiB RAM · 20 GiB disk"]
-        Forwarder["Host TCP forwarding<br/>Scoped event and enrollment ports"]
+        Forwarder["Host TCP forwarding<br/>Event port; enrollment closed"]
         Lab -->|Encrypted agent stream| Forwarder
     end
     Forwarder --> Manager["Existing Wazuh manager"]
@@ -41,7 +43,7 @@ The test guest has no default gateway. Its firewall permits host-originated SSH 
 
 - A dedicated Ubuntu 24.04.5 LTS VM using an official cloud image checked against its published SHA-256 manifest.
 - A separate virtual bridge and scoped guest/host firewall rules.
-- Two host socket-activated TCP forwarding services for Wazuh events and enrollment.
+- Host socket-activated TCP event forwarding; the enrollment forwarder was used for setup and subsequently disabled.
 - A Wazuh 4.14.8 agent enrolled with the existing 4.14.8 manager.
 - A real-time FIM watch on `/opt/security-lab/fim`, including checksum checks and changes to the exercise's synthetic text.
 - A controlled three-operation experiment with manager-side and indexed evidence.
@@ -50,10 +52,12 @@ The exercise used Wazuh's built-in rules. [Official FIM settings](https://docume
 
 ## Network and continuity checks
 
+The original evidence records enrollment as reachable during setup. The later security review records its closure for normal operation.
+
 | Check from the test guest | Result |
 | --- | --- |
 | Wazuh event forwarding port | Reachable |
-| Wazuh enrollment forwarding port | Reachable |
+| Wazuh enrollment forwarding port | Closed after enrollment |
 | Proxmox administration port | Blocked |
 | Selected media service | Unreachable |
 | Public HTTPS destination | Unreachable |

@@ -1,0 +1,111 @@
+{
+  "reviewed_on": "2026-11-24",
+  "scope": "Dedicated FIM lab endpoint and its host forwarding rules; targeted continuity checks on existing services",
+  "network": {
+    "agent_events": {
+      "reachable": true,
+      "expected": true,
+      "passed": true
+    },
+    "agent_enrollment": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    },
+    "host_management": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    },
+    "media_service": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    },
+    "internet_https": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    }
+  },
+  "ssh": {
+    "permitrootlogin": "no",
+    "pubkeyauthentication": "yes",
+    "passwordauthentication": "no",
+    "kbdinteractiveauthentication": "no",
+    "allowusers": "labadmin"
+  },
+  "running_kernel": "6.8.0-151-generic",
+  "guest_has_no_default_route": true,
+  "agent_active": true,
+  "enrollment_socket_disabled": true,
+  "temporary_update_proxy_active": false,
+  "ubuntu_updates": {
+    "upgraded_packages": 67,
+    "new_packages": 6,
+    "old_kernel_removed": "6.8.0-147-generic",
+    "new_kernel_boot_verified": true,
+    "deferred_package": "libsqlite3-0",
+    "deferred_reason": "Ubuntu phased rollout: installed security-pocket version 3.45.1-1ubuntu2.8; updates-pocket candidate 3.45.1-1ubuntu2.11 at 10% rollout",
+    "metadata_refreshed": true
+  },
+  "vulnerability_inventory": {
+    "before_reported_package_CVE_records": 3335,
+    "latest_reported_package_CVE_records": 440,
+    "latest_severities": {
+      "Medium": 232,
+      "High": 111,
+      "-": 64,
+      "Low": 31,
+      "Critical": 2
+    },
+    "interpretation": "Inventory findings require version and applicability review; remaining records do not establish exploitability or a vulnerability-free system."
+  },
+  "post_update_fim_test": [
+    {
+      "operation": "create",
+      "rule_id": "554",
+      "mode": "realtime",
+      "indexed": true,
+      "manager_and_indexer_ids_match": true,
+      "observed_seconds": 9.83
+    },
+    {
+      "operation": "modify",
+      "rule_id": "550",
+      "mode": "realtime",
+      "indexed": true,
+      "manager_and_indexer_ids_match": true,
+      "observed_seconds": 10.76
+    },
+    {
+      "operation": "delete",
+      "rule_id": "553",
+      "mode": "realtime",
+      "indexed": true,
+      "manager_and_indexer_ids_match": true,
+      "observed_seconds": 10.77
+    }
+  ],
+  "media_endpoints_http": {
+    "homarr": 200,
+    "jellyfin": 200,
+    "seerr": 200,
+    "radarr": 200,
+    "sonarr": 200,
+    "prowlarr": 200,
+    "qbittorrent": 200,
+    "bazarr": 200,
+    "cleanuparr": 200
+  },
+  "original_media_container_ids_unchanged": true,
+  "central_wazuh_services_active": 4,
+  "test_directory_empty": true,
+  "limitations": [
+    "No zero-vulnerability certification",
+    "No full homelab penetration test or external exposure audit",
+    "Backups and restore verification still deferred for storage capacity",
+    "Single physical host remains a shared failure domain",
+    "No persistent update route; periodic controlled patching is required"
+  ]
+}
