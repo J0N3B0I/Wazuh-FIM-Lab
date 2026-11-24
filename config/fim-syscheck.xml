@@ -1,0 +1,7 @@
+<syscheck>
+  <disabled>no</disabled>
+  <scan_on_start>yes</scan_on_start>
+  <frequency>3600</frequency>
+  <alert_new_files>yes</alert_new_files>
+  <directories check_all="yes" realtime="yes" report_changes="yes">/opt/security-lab/fim</directories>
+</syscheck>

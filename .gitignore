@@ -1,0 +1,11 @@
+.env
+.env.*
+*.key
+*.pem
+id_ed25519*
+known_hosts
+client.keys
+private/
+raw-evidence/
+*.deb
+*.img

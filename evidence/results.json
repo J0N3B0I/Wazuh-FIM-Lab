@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "project": "Wazuh file integrity monitoring lab",
+  "verified_on": "2026-11-24",
+  "test_agent": "lab-endpoint",
+  "watch_directory": "/opt/security-lab/fim",
+  "guest": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "vcpu": 2,
+    "ram_GiB": 2,
+    "virtual_disk_GiB": 20,
+    "agent_version": "4.14.8"
+  },
+  "manager_version": "4.14.8",
+  "mode": "realtime",
+  "events": [
+    {
+      "operation": "create",
+      "expected_event": "added",
+      "operation_started_utc": "2026-11-24T22:17:50.357579+00:00",
+      "manager_alert_timestamp": "2026-11-24T22:17:50.752+0000",
+      "indexed_first_observed_utc": "2026-11-24T22:18:00.114541+00:00",
+      "observed_end_to_end_seconds": 9.76,
+      "rule": {
+        "id": "554",
+        "level": 5,
+        "description": "File added to the system."
+      },
+      "fim": {
+        "event": "added",
+        "mode": "realtime",
+        "sha256_after": "9318894ef031add1a321e237b3dc3148bbcd79f6c1063a9ffbfa009a5f1adde9"
+      },
+      "operation_sha256": "9318894ef031add1a321e237b3dc3148bbcd79f6c1063a9ffbfa009a5f1adde9",
+      "manager_and_indexer_event_ids_match": true,
+      "indexed": true
+    },
+    {
+      "operation": "modify",
+      "expected_event": "modified",
+      "operation_started_utc": "2026-11-24T22:17:59.944889+00:00",
+      "manager_alert_timestamp": "2026-11-24T22:18:00.339+0000",
+      "indexed_first_observed_utc": "2026-11-24T22:18:10.741636+00:00",
+      "observed_end_to_end_seconds": 10.8,
+      "rule": {
+        "id": "550",
+        "level": 7,
+        "description": "Integrity checksum changed."
+      },
+      "fim": {
+        "event": "modified",
+        "mode": "realtime",
+        "sha256_before": "9318894ef031add1a321e237b3dc3148bbcd79f6c1063a9ffbfa009a5f1adde9",
+        "sha256_after": "ec72eb32063fc660d192a538e58ec6e428c1eb4c7e284254d7fe6965f8a6a496",
+        "changed_attributes": [
+          "size",
+          "mtime",
+          "md5",
+          "sha1",
+          "sha256"
+        ]
+      },
+      "operation_sha256": "ec72eb32063fc660d192a538e58ec6e428c1eb4c7e284254d7fe6965f8a6a496",
+      "manager_and_indexer_event_ids_match": true,
+      "indexed": true
+    },
+    {
+      "operation": "delete",
+      "expected_event": "deleted",
+      "operation_started_utc": "2026-11-24T22:18:10.729784+00:00",
+      "manager_alert_timestamp": "2026-11-24T22:18:11.117+0000",
+      "indexed_first_observed_utc": "2026-11-24T22:18:27.185458+00:00",
+      "observed_end_to_end_seconds": 16.46,
+      "rule": {
+        "id": "553",
+        "level": 7,
+        "description": "File deleted."
+      },
+      "fim": {
+        "event": "deleted",
+        "mode": "realtime",
+        "sha256_after": "ec72eb32063fc660d192a538e58ec6e428c1eb4c7e284254d7fe6965f8a6a496"
+      },
+      "operation_sha256": null,
+      "manager_and_indexer_event_ids_match": true,
+      "indexed": true
+    }
+  ],
+  "test_file_removed": true,
+  "existing_media_container_ids_unchanged": true,
+  "existing_media_endpoints_checked": 9,
+  "existing_media_endpoint_checks_passed": 9,
+  "central_wazuh_services_active": 4,
+  "latency_method": "Single live run, first indexed observation with approximately 3-second polling. Includes query and transport overhead.",
+  "sanitization": "Actual addresses, identifiers, administrative key material, host names and raw unrelated alerts are excluded."
+}

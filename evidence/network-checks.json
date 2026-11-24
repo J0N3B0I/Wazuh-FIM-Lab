@@ -1,0 +1,31 @@
+{
+  "checked_at_utc": "2026-11-24T22:19:15.317236+00:00",
+  "connections": {
+    "agent_events": {
+      "reachable": true,
+      "expected": true,
+      "passed": true
+    },
+    "agent_enrollment": {
+      "reachable": true,
+      "expected": true,
+      "passed": true
+    },
+    "host_management": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    },
+    "media_service": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    },
+    "internet_https": {
+      "reachable": false,
+      "expected": false,
+      "passed": true
+    }
+  },
+  "test_directory_empty": true
+}
