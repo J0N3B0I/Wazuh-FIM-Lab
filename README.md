@@ -4,6 +4,8 @@
 
 A completed security engineering project that follows controlled file changes from a dedicated Linux endpoint through Wazuh analysis and alert indexing. The exercise verifies creation, modification, and deletion events, checks file hashes, and records network restrictions and service continuity.
 
+[Download the complete six-page process guide](complete-process-guide.pdf) · [Editable reading copy](COMPLETE-PROCESS-GUIDE.md)
+
 [Download the plain-English PDF summary](plain-english-summary.pdf) · [Security review](docs/security-review.md)
 
 ## Follow-up kernel review
